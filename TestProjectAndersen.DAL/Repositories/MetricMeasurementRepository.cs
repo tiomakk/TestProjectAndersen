@@ -8,29 +8,29 @@ using TestProjectAndersen.DAL.Interfaces;
 
 namespace TestProjectAndersen.DAL.Repositories
 {
-    class MetricMesurementRepository : IRepository<MetricMesurement>
+    class MetricMeasurementRepository : IRepository<MetricMeasurement>
     {
-        public Task<IEnumerable<MetricMesurement>> GetAllAsync()
+        public Task<IEnumerable<MetricMeasurement>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<MetricMesurement> GetAsync(int id)
+        public Task<MetricMeasurement> GetAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<MetricMesurement>> FindAsync(Func<MetricMesurement, bool> predicate)
+        public Task<IEnumerable<MetricMeasurement>> FindAsync(Func<MetricMeasurement, bool> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public void Create(MetricMesurement item)
+        public void Create(MetricMeasurement item)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(MetricMesurement item)
+        public void Update(MetricMeasurement item)
         {
             throw new NotImplementedException();
         }

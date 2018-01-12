@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TestProjectAndersen.DAL.Entites
 {
-    class MetricMesurement
+    class MetricMeasurement
     {
         public long Id { get; set; }
         [Required]

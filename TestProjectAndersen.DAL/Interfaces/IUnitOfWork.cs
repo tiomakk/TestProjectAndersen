@@ -13,7 +13,7 @@ namespace TestProjectAndersen.DAL.Interfaces
         IRepository<Program> Orders { get; }
         IRepository<UserProgram> UserPrograms { get; }
         IRepository<Metric> Metrics { get; }
-        IRepository<MetricMesurement> MetricMesurements { get; }
+        IRepository<MetricMeasurement> MetricMeasurements { get; }
         Task SaveAsync();
     }
 }

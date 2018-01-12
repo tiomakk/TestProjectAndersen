@@ -15,7 +15,7 @@ namespace TestProjectAndersen.DAL.EF
         public DbSet<Metric> Metrics { get; set; }
         public DbSet<Program> Programs { get; set; }
         public DbSet<UserProgram> UserPrograms { get; set; }
-        public DbSet<MetricMesurement> MetricMesurements { get; set; }
+        public DbSet<MetricMeasurement> MetricMesurements { get; set; }
 
         public ApplicationContext(string connectionString) 
             : base(connectionString) { }

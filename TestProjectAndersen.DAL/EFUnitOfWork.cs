@@ -16,7 +16,7 @@ namespace TestProjectAndersen.DAL
         private UserRepository _userRepository;
         private UserProgramRepository _userProgramRepository;
         private MetricRepository _metricRepository;
-        private MetricMesurementRepository _metricMesurementRepository;
+        private MetricMeasurementRepository _metricMeasurementRepository;
         private ProgramRepository _programRepository;
 
         public EFUnitOfWork(string connectionString)
@@ -44,12 +44,12 @@ namespace TestProjectAndersen.DAL
             get { return _metricRepository = _metricRepository ?? new MetricRepository(); }
         }
 
-        public IRepository<MetricMesurement> MetricMesurements
+        public IRepository<MetricMeasurement> MetricMeasurements
         {
             get
             {
-                return _metricMesurementRepository = _metricMesurementRepository ?? 
-                    new MetricMesurementRepository();
+                return _metricMeasurementRepository = _metricMeasurementRepository ?? 
+                    new MetricMeasurementRepository();
             }
         }
 

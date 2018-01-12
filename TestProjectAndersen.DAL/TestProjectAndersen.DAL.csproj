@@ -55,14 +55,14 @@
     <Compile Include="EF\ApplicationContext.cs" />
     <Compile Include="EF\MetricsInitializer.cs" />
     <Compile Include="Entites\Metric.cs" />
-    <Compile Include="Entites\MetricMesurement.cs" />
+    <Compile Include="Entites\MetricMeasurement.cs" />
     <Compile Include="Entites\Program.cs" />
     <Compile Include="Entites\User.cs" />
     <Compile Include="Entites\UserProgram.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\MetricMesurementRepository.cs" />
+    <Compile Include="Repositories\MetricMeasurementRepository.cs" />
     <Compile Include="Repositories\MetricRepository.cs" />
     <Compile Include="Repositories\ProgramRepository.cs" />
     <Compile Include="Repositories\UserProgramRepository.cs" />
