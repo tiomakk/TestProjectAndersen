@@ -10,7 +10,7 @@ using TestProjectAndersen.DAL.Repositories;
 
 namespace TestProjectAndersen.DAL
 {
-    class EFUnitOfWork : IUnitOfWork
+    public class EFUnitOfWork : IUnitOfWork
     {
         private readonly ApplicationContext _db;
         private UserRepository _userRepository;
@@ -26,17 +26,17 @@ namespace TestProjectAndersen.DAL
 
         public IRepository<User> Users
         {
-            get { return _userRepository = _userRepository ?? new UserRepository(); }
+            get { return _userRepository = _userRepository ?? new UserRepository(_db); }
         }
 
-        public IRepository<Program> Orders
+        public IProgramRepository Programs
         {
-            get { return _programRepository = _programRepository ?? new ProgramRepository(); }
+            get { return _programRepository = _programRepository ?? new ProgramRepository(_db); }
         }
 
-        public IRepository<UserProgram> UserPrograms
+        public IUserProgramRepository UserPrograms
         {
-            get { return _userProgramRepository = _userProgramRepository ?? new UserProgramRepository(); }
+            get { return _userProgramRepository = _userProgramRepository ?? new UserProgramRepository(_db); }
         }
 
         public IRepository<Metric> Metrics

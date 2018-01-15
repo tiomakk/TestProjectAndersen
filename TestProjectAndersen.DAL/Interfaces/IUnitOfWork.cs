@@ -7,11 +7,11 @@ using TestProjectAndersen.DAL.Entites;
 
 namespace TestProjectAndersen.DAL.Interfaces
 {
-    interface IUnitOfWork: IDisposable
+    public interface IUnitOfWork: IDisposable
     {
         IRepository<User> Users { get; }
-        IRepository<Program> Orders { get; }
-        IRepository<UserProgram> UserPrograms { get; }
+        IProgramRepository Programs { get; }
+        IUserProgramRepository UserPrograms { get; }
         IRepository<Metric> Metrics { get; }
         IRepository<MetricMeasurement> MetricMeasurements { get; }
         Task SaveAsync();

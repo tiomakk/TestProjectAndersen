@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestProjectAndersen.DAL.Entites
 {
-    class Program
+    public class Program
     {
         public int Id { get; set; }
         public string Name { get; set; }

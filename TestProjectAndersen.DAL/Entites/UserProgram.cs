@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace TestProjectAndersen.DAL.Entites
 {
-    class UserProgram
+    public class UserProgram
     {
         public int Id { get; set; }
         public int ProgramId { get; set; }
         public Program Program { get; set; }
-        public long UserId { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
         [Required]
         public DateTime StartedAt { get; set; }
-        public DateTime FinishedAt { get; set; }
+        public DateTime? FinishedAt { get; set; }
         public bool Foolowing { get; set; }
     }
 }

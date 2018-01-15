@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestProjectAndersen.DAL.EF;
 using TestProjectAndersen.DAL.Entites;
 using TestProjectAndersen.DAL.Interfaces;
 
@@ -10,14 +11,20 @@ namespace TestProjectAndersen.DAL.Repositories
 {
     class UserRepository : IRepository<User>
     {
+        private readonly ApplicationContext _db;
+
+        public UserRepository(ApplicationContext context)
+        {
+            _db = context;
+        }
         public Task<IEnumerable<User>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<User> GetAsync(int id)
+        public async Task<User> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _db.Users.FindAsync(id);
         }
 
         public Task<IEnumerable<User>> FindAsync(Func<User, bool> predicate)
@@ -27,7 +34,7 @@ namespace TestProjectAndersen.DAL.Repositories
 
         public void Create(User item)
         {
-            throw new NotImplementedException();
+            _db.Users.Add(item);
         }
 
         public void Update(User item)

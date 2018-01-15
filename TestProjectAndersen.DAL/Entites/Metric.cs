@@ -14,7 +14,8 @@ namespace TestProjectAndersen.DAL.Entites
         Quarterly,       
         Single
     }
-    class Metric
+
+    public class Metric
     {
         public int Id { get; set; }
         [Required]

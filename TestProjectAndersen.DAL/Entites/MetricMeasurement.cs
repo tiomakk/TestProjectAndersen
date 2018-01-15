@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace TestProjectAndersen.DAL.Entites
 {
-    class MetricMeasurement
+    public class MetricMeasurement
     {
         public long Id { get; set; }
         [Required]
         public string Value { get; set; }
-        [Required]
+
         public DateTime Date { get; set; }
 
         public int MetricId { get; set; }

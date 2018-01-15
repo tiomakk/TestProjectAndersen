@@ -59,8 +59,10 @@
     <Compile Include="Entites\Program.cs" />
     <Compile Include="Entites\User.cs" />
     <Compile Include="Entites\UserProgram.cs" />
+    <Compile Include="Interfaces\IProgramRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\IUserProgramRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\MetricMeasurementRepository.cs" />
     <Compile Include="Repositories\MetricRepository.cs" />

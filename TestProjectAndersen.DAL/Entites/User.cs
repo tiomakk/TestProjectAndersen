@@ -14,15 +14,15 @@ namespace TestProjectAndersen.DAL.Entites
         Female
     }
 
-    class User
+    public class User
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Patronymic { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public GenderType Gender { get; set; }
 
         public IEnumerable<UserProgram> UserPrograms { get; set; }
