@@ -33,10 +33,20 @@
     <StartupObject>TestProjectAndersen.BLL.Class1</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="ExcelDataReader, Version=3.3.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.3.3.0\lib\net45\ExcelDataReader.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Web" />
@@ -49,11 +59,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DTO\MeasurementDTO.cs" />
     <Compile Include="DTO\ParsedMeasurementDTO.cs" />
     <Compile Include="DTO\ParsedProgramDTO.cs" />
+    <Compile Include="Exceptions\ParsingExcelFileException.cs" />
+    <Compile Include="Exceptions\ParsingFileException.cs" />
+    <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Implementations\ExcelFileParser.cs" />
+    <Compile Include="Infrastructure\NinjectBindings.cs" />
     <Compile Include="Interfaces\IFileParser.cs" />
+    <Compile Include="Interfaces\IMeasurementService.cs" />
+    <Compile Include="Interfaces\IProgramService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MeasurementService.cs" />
+    <Compile Include="Services\ProgramService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TestProjectAndersen.DAL\TestProjectAndersen.DAL.csproj">
@@ -62,6 +82,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

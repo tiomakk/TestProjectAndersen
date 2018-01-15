@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using ExcelDataReader;
 using TestProjectAndersen.BLL.DTO;
+using TestProjectAndersen.BLL.Exceptions;
 using TestProjectAndersen.BLL.Interfaces;
 
 namespace TestProjectAndersen.BLL.Implementations
@@ -21,41 +22,74 @@ namespace TestProjectAndersen.BLL.Implementations
             {
                 reader.Read(); //Пропускаем первую строку с шапкой
                 var i = 2;
-               
-                try
+
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    string skipRow;
+                    try
                     {
-                        var skipRow = reader.GetString(1);
-
-                        if (skipRow != "N" && skipRow != "Y")
-                            throw new Exception($"Error at row {i}. Is_Participating must be \"N\" or \"Y\"");
-                        if (skipRow == "N")
-                            continue;
-
-                        var isFollowed = reader.GetString(2);
-
-                        if(isFollowed != "N" && isFollowed != "Y")
-                            throw new Exception($"Error at row {i}. Is_Exec must be \"N\" or \"Y\"");
-
-                        
-                        var userId = (int)reader.GetDouble(0); //TODO На будущее добавить проверку, если User_Id будет дробным числом
-
-                        parsedPrograms.Add(new ParsedProgramDTO
-                        {
-                            UserId = userId,
-                            IsFollowed = (isFollowed == "Y"),
-                            Name = reader.GetString(3),
-                            StartedAt = reader.GetDateTime(4)
-                        });
-
-                        i++;
+                        skipRow = reader.GetString(1);
                     }
+                    catch (Exception e)
+                    {
+                        throw new ParsingExcelFileException($"Error at row {i}. Is_Participating wrong format", i, "Is_Participating");
+                    }
+                    if (skipRow != "N" && skipRow != "Y")
+                        throw new ParsingExcelFileException($"Error at row {i}. Is_Participating must be \"N\" or \"Y\"", i, "Is_Participating");
+                    if (skipRow == "N")
+                    {
+                        i++;
+                        continue;
+                    }
+
+                    DateTime date;
+                    try
+                    {
+                        date = reader.GetDateTime(4);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new ParsingExcelFileException($"Error at row {i}. Wrong date format", i, "Date_Start");
+                    }
+                    if (date > DateTime.Now)
+                        throw new ParsingExcelFileException($"Error at row {i}. Date_Start must be earlier than now.", i, "Date_Start");
+
+                    string isFollowed;
+                    try
+                    {
+                        isFollowed = reader.GetString(2);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new ParsingExcelFileException($"Error at row {i}. Is_Exec wrong format", i, "Is_Exec");
+                    }
+                    if(isFollowed != "N" && isFollowed != "Y")
+                        throw new ParsingExcelFileException($"Error at row {i}. Is_Exec must be \"N\" or \"Y\"", i, "Is_Exec");
+
+
+                    int userId;
+                    try
+                    {
+                        userId = (int) reader
+                            .GetDouble(0); //TODO На будущее добавить проверку, если User_Id будет дробным числом
+                    }
+                    catch (Exception e)
+                    {
+                        throw new ParsingExcelFileException($"Error at row {i}. User_Id wrong format", i, "User_Id");
+                    }
+                        
+
+                    parsedPrograms.Add(new ParsedProgramDTO
+                    {
+                        UserId = userId,
+                        IsFollowed = (isFollowed == "Y"),
+                        Name = reader.GetString(3),
+                        StartedAt = reader.GetDateTime(4)
+                    });
+
+                    i++;
                 }
-                catch (InvalidCastException ex)
-                {
-                    throw new Exception($"Error at row {i}");
-                }
+
             }
             return parsedPrograms;
         }
@@ -104,7 +138,7 @@ namespace TestProjectAndersen.BLL.Implementations
                 }
                 catch (InvalidCastException ex)
                 {
-                    throw new Exception($"Error at row {i}");
+                    throw new Exception($"Error at row {i}");                    
                 }
             }
             return parsedMeasurements;
